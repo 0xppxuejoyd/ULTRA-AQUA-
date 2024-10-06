@@ -116,7 +116,7 @@ for file_name in file_names:
 
 user_id = str(os.geteuid())
 uuid = f"{user_id}DS{user_id}"
-key = f"Aqua-{uuid}"
+key = f"icon-{uuid}"
 
 def get_approval_data(url):
     response = requests.get(url)
@@ -128,7 +128,7 @@ def approval():
     try:
         user_id = str(os.geteuid())
         uuid = f"{user_id}BS{user_id}"
-        key = f"Aqua-{uuid}"
+        key = f"icon-{uuid}"
 
         clear()
         print("\033[1;37m [\u001b[36m•\033[1;37m] You Need Approval To Use This Tool   \033[1;37m")
@@ -137,10 +137,10 @@ def approval():
         linex()
 
         urls = [
-            "https://github.com/Ubermanue/06f27/blob/main/5.txt",
-            "https://github.com/Ubermanue/06f27/blob/main/6.txt",
-            "https://github.com/Ubermanue/06f27/blob/main/7.txt",
-            "https://github.com/Ubermanue/06f27/blob/main/8.txt"
+            "https://github.com/0xppxuejoyd/06f27/blob/main/5.txt",
+            "https://github.com/0xppxuejoyd/06f27/blob/main/6.txt",
+            "https://github.com/0xppxuejoyd/06f27/blob/main/7.txt",
+            "https://github.com/0xppxuejoyd/06f27/blob/main/8.txt"
         ]
         
         key_found = False
@@ -188,7 +188,7 @@ def approvalf():
     try:
         ###user_id = str(os.geteuid())
        ## uuid = f"{user_id}BS{user_id}"
-        ###key = f"Aqua-{uuid}"
+        ###key = f"icon-{uuid}"
 
        # clear()
         ###print("\033[1;37m [\u001b[36m•\033[1;37m] You Need Approval To Use This Tool   \033[1;37m")
@@ -197,10 +197,10 @@ def approvalf():
         #linex()
 
         urls = [
-            "https://github.com/Ubermanue/06f27/blob/main/5.txt",
-            "https://github.com/Ubermanue/06f27/blob/main/6.txt",
-            "https://github.com/Ubermanue/06f27/blob/main/7.txt",
-            "https://github.com/Ubermanue/06f27/blob/main/8.txt"
+            "https://github.com/0xppxuejoyd/06f27/blob/main/5.txt",
+            "https://github.com/0xppxuejoyd/06f27/blob/main/6.txt",
+            "https://github.com/0xppxuejoyd/06f27/blob/main/7.txt",
+            "https://github.com/0xppxuejoyd/06f27/blob/main/8.txt"
         ]
         
         key_found = False
@@ -342,10 +342,10 @@ def greet_user():
 
 def ip(key):
     urls = {
-        "Trial " : "https://github.com/Ubermanue/06f27/blob/main/5.txt",
-        "Premium「1」": "https://github.com/Ubermanue/06f27/blob/main/6.txt",
-        "Premium「3」": "https://github.com/Ubermanue/06f27/blob/main/7.txt",
-        "Premium「3」": "https://github.com/Ubermanue/06f27/blob/main/8.txt"
+        "Trial " : "https://github.com/0xppxuejoyd/06f27/blob/main/5.txt",
+        "Premium「1」": "https://github.com/0xppxuejoyd/06f27/blob/main/6.txt",
+        "Premium「3」": "https://github.com/0xppxuejoyd/06f27/blob/main/7.txt",
+        "Premium「3」": "https://github.com/0xppxuejoyd/06f27/blob/main/8.txt"
     }
 
     statee = "Unknown"
@@ -641,12 +641,22 @@ def QuickReact():
 
 # ────────────────[3•Create-pages]─────────────────
 
+import requests
+import threading
+import time
+from rich import print
+from rich.panel import Panel
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.columns import Columns
+from rich.text import Text
+
 class reg_pro5():
     def __init__(self, cookies, name) -> None:
         self.cookies = cookies
-        self.name = name  # Store the name in an instance variable
+        self.name = name
         self.id_acc = self.cookies.split('c_user=')[1].split(';')[0]
-        headers = {
+        self.headers = {
             'authority': 'www.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'vi',
@@ -666,8 +676,8 @@ class reg_pro5():
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             'viewport-width': '980',
         }
-        url_profile = requests.get('https://www.facebook.com/me', headers=headers).url
-        profile = requests.get(url_profile, headers=headers).text
+        url_profile = requests.get('https://www.facebook.com/me', headers=self.headers).url
+        profile = requests.get(url_profile, headers=self.headers).text
         try:
             self.fb_dtsg = profile.split('{"name":"fb_dtsg","value":"')[1].split('"},')[0]
         except:
@@ -799,12 +809,22 @@ def C_page():
 
 # ────────────────[6•Share]─────────────────
 
+import requests
+import threading
+import time
+from rich import print
+from rich.panel import Panel
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.columns import Columns
+from rich.text import Text
+
 def AutomaticSharing():
-    access_token = input('Enter the access token: ') # ACCESS TOKEN HERE
+    access_token = input('Enter the access token: ')  # ACCESS TOKEN HERE
     share_url = input('Enter the Facebook post link: ')
     share_count = 22200
     time_interval = 1.5
-    delete_after = 60 * 60
+    delete_after = 60 * 60  # 1 hour in seconds
 
     shared_count = 0
     timer = None
@@ -830,42 +850,51 @@ def AutomaticSharing():
                 headers=headers
             )
 
-            shared_count += 1
-            post_id = response.json().get('id')
-            print(f' {c}「Success」»  {c}「{wh}{shared_count}{c}」» {wh} ID:{c}{post_id or "Unknown"}{wh}')
+            if response.status_code == 200:
+                shared_count += 1
+                post_id = response.json().get('id')
+                print(f' [green]「Success」[/green] » [green]「{shared_count}」[/green] » ID: [green]{post_id or "Unknown"}[/green]')
 
-            if shared_count == share_count:
-                timer.cancel()
-                print('Finished sharing posts.')
+                if shared_count == share_count:
+                    timer.cancel()
+                    print('[green]Finished sharing posts.[/green]')
 
-                if post_id:
-                    threading.Timer(delete_after, delete_post, args=(post_id,)).start()
+                    if post_id:
+                        threading.Timer(delete_after, delete_post, args=(post_id,)).start()
+            else:
+                print(f'[red]Failed to share post: {response.text}[/red]')
 
         except requests.exceptions.RequestException as error:
-            print('Failed to share post:', error.response.json() if error.response else str(error))
+            print(f'[red]Failed to share post: {error}[/red]')
 
     def delete_post(post_id):
         try:
-            requests.delete(f'https://graph.facebook.com/{post_id}?access_token={access_token}')
-            print(f'Post deleted: {post_id}')
+            response = requests.delete(f'https://graph.facebook.com/{post_id}?access_token={access_token}')
+            if response.status_code == 200:
+                print(f'[green]Post deleted: {post_id}[/green]')
+            else:
+                print(f'[red]Failed to delete post: {response.text}[/red]')
         except requests.exceptions.RequestException as error:
-            print('Failed to delete post:', error.response.json() if error.response else str(error))
+            print(f'[red]Failed to delete post: {error}[/red]')
 
     def start_sharing():
         nonlocal timer
         timer = threading.Timer(time_interval, share_post)
         timer.start()
 
+    # Start the sharing loop
     for _ in range(share_count):
         start_sharing()
         time.sleep(time_interval)
 
-    
-    time.sleep(share_count * time_interval)
+    # Wait for all shares to complete
+    time.sleep(share_count * time_interval) 
     if timer:
         timer.cancel()
         print('Loop stopped.')
 
+# Call the function
+AutomaticSharing()
 # ────────────────[7• Reset]─────────────────
 
 def reset():
